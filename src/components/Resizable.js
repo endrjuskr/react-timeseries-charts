@@ -36,6 +36,7 @@ export default class Resizable extends React.Component {
             this.setState({
                 width: this.container.offsetWidth
             });
+            this.props.onResize && this.props.onResize(this.container.offsetWidth);
         }
     }
 
@@ -58,5 +59,6 @@ export default class Resizable extends React.Component {
 }
 
 Resizable.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    onResize: PropTypes.func
 };

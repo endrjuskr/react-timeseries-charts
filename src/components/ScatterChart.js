@@ -102,8 +102,11 @@ export default class ScatterChart extends React.Component {
 
         let point;
         let minDistance = Infinity;
-        for (const column of this.props.columns) {
-            for (const event of this.props.series.events()) {
+        for (let i = 0; i < this.props.columns.length; ++i) {
+            const column = this.props.columns[i];
+            const events = this.props.series.events();
+            for (let j = 0; j < events.length; ++j) {
+                const event = events[j];
                 const t = event.timestamp();
                 const value = event.get(column);
                 const px = this.props.timeScale(t);
@@ -205,7 +208,13 @@ export default class ScatterChart extends React.Component {
 
         this.props.columns.forEach(column => {
             let key = 1;
-            for (const event of series.events()) {
+            const events = series.events();
+            while (true) {
+                const aa = events.next();
+                if (aa.done) {
+                    break;
+                }
+                const event = aa.value;
                 const t = new Date(
                     event.begin().getTime() + (event.end().getTime() - event.begin().getTime()) / 2
                 );

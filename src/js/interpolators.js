@@ -64,8 +64,8 @@ export default class ScaleInterpolator {
     }
 
     /**
-   * A new (or initial) scale is set on the interpolator
-   */
+     * A new (or initial) scale is set on the interpolator
+     */
     setScale(key, scale) {
         // Initial scale
         if (!this.sourceScale) {
@@ -92,13 +92,13 @@ export default class ScaleInterpolator {
     }
 
     /**
-   * Returns a scaler, which is a function that scales the value
-   * supplied to it. This return the scaler corresponding to the
-   * source scale. Note that if a target scale is defined and the
-   * interpolator is animating towards that target, the observer
-   * callback will be called with the transitional scaler that can
-   * be used to scale data to the intermediate state.
-   */
+     * Returns a scaler, which is a function that scales the value
+     * supplied to it. This return the scaler corresponding to the
+     * source scale. Note that if a target scale is defined and the
+     * interpolator is animating towards that target, the observer
+     * callback will be called with the transitional scaler that can
+     * be used to scale data to the intermediate state.
+     */
     scaler() {
         if (_.isNull(this.cachedScaler)) {
             this.cachedScaler = v => this.sourceScale(v);
@@ -107,17 +107,17 @@ export default class ScaleInterpolator {
     }
 
     /**
-   * Returns the d3 scale. It will return the target scale if present
-   * otherwise the source scale. Note: this is the d3 internal scale. To
-   * scale values, use the scaler.
-   */
+     * Returns the d3 scale. It will return the target scale if present
+     * otherwise the source scale. Note: this is the d3 internal scale. To
+     * scale values, use the scaler.
+     */
     latestScale() {
         return this.targetScale ? this.targetScale : this.sourceScale;
     }
 
     /**
-   * Returns the transition, as set in the constructor
-   */
+     * Returns the transition, as set in the constructor
+     */
     transition() {
         return this.transitionTime;
     }
